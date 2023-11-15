@@ -6,6 +6,13 @@ const app = express();
 // Serve the files in /assets at the URI /assets.
 app.use('/assets', express.static('assets'));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://project-ui-5bzassrkaq-uc.a.run.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // The HTML content is produced by rendering a handlebars template.
 // The template values are stored in global state for reuse.
 const data = {
